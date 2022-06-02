@@ -84,11 +84,17 @@ public class UserController extends HttpServlet {
 				
 				//메인 리다이렉트
 				WebUtil.redirect(request, response, "/mysite2/main");
-				
 			}
+		}else if("logout".equals(action)) {
+			System.out.println("UserController>logout");
 			
-			//포워드
+			//세션값을 지운다
+			HttpSession session = request.getSession();
+			session.removeAttribute("authUser");
+			session.invalidate();			
 			
+			//리다이렉트
+			WebUtil.redirect(request, response, "/mysite2/main");
 		}
 		
 		

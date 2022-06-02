@@ -90,7 +90,7 @@ public class UserDao {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = "";
 			query += " select  no, ";
-			query += "         name, ";
+			query += "         name ";
 			query += " from users ";
 			query += " where id = ? ";
 			query += "     and password = ? ";
