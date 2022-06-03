@@ -16,8 +16,11 @@ import com.javaex.vo.UserVo;
 @WebServlet("/user")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//포스트 방식일때 한글깨짐 방지
+		request.setCharacterEncoding("UTF-8");
+		
 		System.out.println("UserController");
 		
 		String action = request.getParameter("action");
@@ -95,29 +98,53 @@ public class UserController extends HttpServlet {
 			
 			//리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/main");
-		}else if("modifyForm".equals(action)) {
+		}else if("modifyForm".equals(action)) { //수정폼
 			System.out.println("UserController>modifyForm");
-			//포워드 수정폼
+			
+			//로그인 체크
+			
+			//로그인x {
+				//리다이렉트(로그인폼)
+			//}
+			
+			
+		
+			//로그인한 사용자의  no 값을 세션에서 가져오기
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//no 로 사용자 정보 가져오기
+			UserDao userDao = new UserDao();
+			UserVo userVo = userDao.getUser(no);  //no id password name gender
+			
+			//request 의 attribute 에 userVo 는 넣어서 포워딩
+			request.setAttribute("userVo", userVo);
 			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
-		}else if("modify".equals(action)) { //회원정보수정
+		}else if("modify".equals(action)) { //수정
 			System.out.println("UserController>modify");
 			
-			//파라미터 꺼내기
-			String id = request.getParameter("id");
+			//세션에서 no  알아내기
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			int no = authUser.getNo();
+			
+			//1.파라미터꺼낸다 -2.묶어준다 -3. dao를 사용한다
 			String password = request.getParameter("password");
 			String name = request.getParameter("name");
 			String gender = request.getParameter("gender");
 			
-			//Vo만들기
-			UserVo userVo = new UserVo(id, password, name, gender);
-			System.out.println(userVo);
+			UserVo userVo = new UserVo();
+			userVo.setNo(no);
+			userVo.setPassword(password);
+			userVo.setName(name);
+			userVo.setGender(gender);
 			
-			//Dao를 이용해서 저장하기
 			UserDao userDao = new UserDao();
-			userDao.modify(userVo);
+			int count = userDao.update(userVo);
 			
-			//포워드
-			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+			//후반작업 --> 결과(응답)
+			WebUtil.redirect(request, response, "/mysite2/main");
 		}
 		
 		

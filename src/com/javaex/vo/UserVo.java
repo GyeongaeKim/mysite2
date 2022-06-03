@@ -1,47 +1,34 @@
 package com.javaex.vo;
 
 public class UserVo {
-	
+
 	//필드
 	private int no;
 	private String id;
-	private String password;
 	private String name;
+	private String password;
 	private String gender;
 	
 	
 	//생성자
-	public UserVo() {}
-	
-	public UserVo(String id, String password) {
-		this.id = id;
-		this.password = password;
+	public UserVo() {
 	}
 	
-	public UserVo(String password, String name, String gender) {
-		this.password = password;
-		this.name = name;
-		this.gender = gender;
-	}
-	
-	public UserVo(String id, String password, String name, String gender) {
+	public UserVo(String id, String name, String password, String gender) {
 		this.id = id;
-		this.password = password;
 		this.name = name;
-		this.gender = gender;
-	}
-	
-	public UserVo(int no, String id, String password, String name, String gender) {
-		this.no = no;
-		this.id = id;
 		this.password = password;
-		this.name = name;
 		this.gender = gender;
 	}
 
-	
-	
-	
+	public UserVo(int no, String id, String name, String password, String gender) {
+		this.no = no;
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.gender = gender;
+	}
+
 	//메소드 gs
 	public int getNo() {
 		return no;
@@ -83,17 +70,10 @@ public class UserVo {
 		this.gender = gender;
 	}
 
-	
-
-	
-	
-	
 	//메소드 일반
 	@Override
 	public String toString() {
-		return "UserVo [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender
+		return "UserVo [no=" + no + ", id=" + id + ", name=" + name + ", password=" + password + ", gender=" + gender
 				+ "]";
 	}
-	
-	
 }
