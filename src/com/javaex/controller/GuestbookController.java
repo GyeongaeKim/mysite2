@@ -50,7 +50,7 @@ public class GuestbookController extends HttpServlet {
 			GuestbookVo guestVo = new GuestbookVo(name, password, content);
 			int count = guestDao.insert(guestVo);
 			
-			WebUtil.redirect(request, response, "/mysite2/guestbook");
+			WebUtil.redirect(request, response, "/mysite2/guestbook?action=addList");
 			
 		}
 		

@@ -78,34 +78,33 @@
 
 				<div id="guestbook">
 					<form action="/mysite2/guestbook" method="get">
-							<input type="text" name="action" value="add">
-						<table id="guestAdd">
-							<colgroup>
-								<col style="width: 70px;">
-								<col>
-								<col style="width: 70px;">
-								<col>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th><label class="form-text" for="input-uname">이름</label></td>
-									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label></td>
-									<td><input id="input-pass"type="password" name="password"></td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
-								</tr>
-								<tr class="button-area">
-									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
-								</tr>
-							</tbody>
-							
-						</table>
-						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
-						
+						<input type="text" name="action" value="insert">
+							<table id="guestAdd">
+								<colgroup>
+									<col style="width: 70px;">
+									<col>
+									<col style="width: 70px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th><label class="form-text" for="input-uname">이름</label></td>
+										<td><input id="input-uname" type="text" name="name"></td>
+										<th><label class="form-text" for="input-pass">패스워드</label></td>
+										<td><input id="input-pass"type="password" name="password"></td>
+									</tr>
+									<tr>
+										<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
+									</tr>
+									<tr class="button-area">
+										<td colspan="4" class="text-center"><button type="submit">등록</button></td>
+									</tr>
+								</tbody>
+								
+							</table>
+							<!-- //guestWrite -->
 					</form>	
+					<br>
 					
 					
 					<% for(int i=0; i<guestList.size(); i++) {%>
