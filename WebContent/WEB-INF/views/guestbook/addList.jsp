@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javaex.vo.UserVo"%>
-<%@ page import="com.javaex.vo.GuestbookVo"%>
-<%@ page import="java.util.*"%>
 
 <%
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-	System.out.println(authUser);
 	
-	List<GuestbookVo> guestList = (List<GuestbookVo>)request.getAttribute("guestList");
-
 %>
 
 <!DOCTYPE html>
@@ -32,9 +25,9 @@
 
 			
 			<ul>
-				<li><%=authUser.getName() %> 님 안녕하세요^^</li>
+				<li> 님 안녕하세요^^</li>
 				<li><a href="/mysite2/user?action=logout" class="btn_s">로그아웃</a></li>
-				<li><a href="/mysite2/user?action=modifyForm&no=<%=authUser.getNo() %>" class="btn_s">회원정보수정</a></li>
+				<li><a href="/mysite2/user?action=modifyForm&no=" class="btn_s">회원정보수정</a></li>
 			</ul>
 			
 			<!-- 
@@ -110,7 +103,7 @@
 						<input type="hidden" name="action" value="add">
 						
 					</form>	
-					<% for(int i=0; i<guestList.size(); i++) {%>	
+					
 						<table class="guestRead">
 							<colgroup>
 								<col style="width: 10%;">
@@ -119,16 +112,16 @@
 								<col style="width: 10%;">
 							</colgroup>
 							<tr>
-								<td><%=guestList.get(i).getNo() %></td>
-								<td><%=guestList.get(i).getName() %></td>
-								<td><%=guestList.get(i).getRegDate() %></td>
-								<td><a href="/mysite2/guestbook?action=deleteForm&no=<%=guestList.get(i).getNo() %>">[삭제]</a></td>
+								<td>no</td>
+								<td>name</td>
+								<td>date</td>
+								<td><a href="/mysite2/guestbook?action=deleteForm&no=">[삭제]</a></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>
+								<td colspan=4 class="text-left">content</td>
 							</tr>
 						</table>
-					<%} %>	
+				
 						
 					
 					<!-- //guestRead -->
@@ -142,7 +135,7 @@
 		<!-- //container  -->
 
 		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
+			Copyright ⓒ 2022 김경애. All right reserved
 		</div>
 		<!-- //footer -->
 	</div>
