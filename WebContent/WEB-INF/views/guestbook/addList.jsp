@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.javaex.vo.GuestbookVo" %>
+<%@ page import="com.javaex.dao.GuestbookDao" %>
+<%@ page import = "java.util.List" %>
 
 <%
-	
+	List<GuestbookVo> guestList = (List<GuestbookVo>)request.getAttribute("guestList");
 %>
 
 <!DOCTYPE html>
@@ -104,6 +107,8 @@
 						
 					</form>	
 					
+					
+					<% for(int i=0; i<guestList.size(); i++) {%>
 						<table class="guestRead">
 							<colgroup>
 								<col style="width: 10%;">
@@ -112,16 +117,16 @@
 								<col style="width: 10%;">
 							</colgroup>
 							<tr>
-								<td>no</td>
-								<td>name</td>
-								<td>date</td>
-								<td><a href="/mysite2/guestbook?action=deleteForm&no=">[삭제]</a></td>
+								<td><%=guestList.get(i).getNo() %></td>
+								<td><%=guestList.get(i).getName() %></td>
+								<td><%=guestList.get(i).getRegDate() %></td>
+								<td><a href="">[삭제]</a></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left">content</td>
+								<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>
 							</tr>
 						</table>
-				
+					<%} %>				
 						
 					
 					<!-- //guestRead -->
