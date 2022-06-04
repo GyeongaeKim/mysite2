@@ -119,6 +119,33 @@ public class GuestbookDao {
 	}
 	
 	
+	public int delete(GuestbookVo guestbookVo) {
+		int count=-1;
+		getConnection();
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = "";
+			query += " delete from guestbook ";
+			query += " where no= ? ";
+			query += " 	 and password= ? ";
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, guestbookVo.getNo());
+			pstmt.setString(2, guestbookVo.getPassword());
+			
+			count = pstmt.executeUpdate();
+			
+			//결과처리
+			System.out.println(count + "건이 삭제되었습니다.");
+			
+		
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}	
+		close();
+		return count;
+	}
+	
 	
 	
 	

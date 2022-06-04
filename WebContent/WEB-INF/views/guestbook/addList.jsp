@@ -119,7 +119,7 @@
 								<td><%=guestList.get(i).getNo() %></td>
 								<td><%=guestList.get(i).getName() %></td>
 								<td><%=guestList.get(i).getRegDate() %></td>
-								<td><a href="">[삭제]</a></td>
+								<td><a href="/mysite2/guestbook?action=deleteForm&no=<%=guestList.get(i).getNo() %>">[삭제]</a></td>
 							</tr>
 							<tr>
 								<td colspan=4 class="text-left"><%=guestList.get(i).getContent() %></td>

@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javaex.dao.GuestbookDao;
 import com.javaex.util.WebUtil;
 import com.javaex.vo.GuestbookVo;
+import com.javaex.vo.UserVo;
 
 @WebServlet("/guestbook")
 public class GuestbookController extends HttpServlet {
@@ -51,7 +53,30 @@ public class GuestbookController extends HttpServlet {
 			int count = guestDao.insert(guestVo);
 			
 			WebUtil.redirect(request, response, "/mysite2/guestbook?action=addList");
+		}else if("deleteForm".equals(action)) {//삭제폼
+			WebUtil.forword(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");
+		}else if("delete".equals(action)){ //삭제
+			//세션에서 no  알아내기
+			//HttpSession session = request.getSession();
+			//GuestbookVo authGuest = (GuestbookVo)session.getAttribute("authGuest");
+			//int no = authGuest.getNo();
 			
+			//파라미터에서 값 꺼내오기
+			int no = Integer.parseInt(request.getParameter("no"));
+			String password = request.getParameter("password");
+			
+			GuestbookVo guestbookVo = new GuestbookVo();
+			guestbookVo.setNo(no);
+			guestbookVo.setPassword(password);
+			
+			GuestbookDao guestbookDao = new GuestbookDao();
+			guestbookDao.delete(guestbookVo);
+			
+			//리다이렉트 
+			WebUtil.redirect(request, response, "/mysite2/guestbook?action=addList");
+			
+		}else {
+			System.out.println("action 파라미터 없음");
 		}
 		
 	}
