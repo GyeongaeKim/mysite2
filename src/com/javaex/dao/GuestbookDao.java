@@ -63,7 +63,8 @@ public class GuestbookDao {
 			query += "        name, ";
 			query += "        password, ";
 			query += "        content, ";
-			query += "        reg_date ";
+			query += "        reg_date, ";
+			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate ";
 			query += " from guestbook ";
 			query += " order by reg_date desc ";
 			
@@ -76,7 +77,7 @@ public class GuestbookDao {
 				String name = rs.getString("name");
 				String password = rs.getString("password");
 				String content = rs.getString("content");
-				String regDate = rs.getString("reg_date");
+				String regDate = rs.getString("newDate");
 				
 				GuestbookVo guestVo = new GuestbookVo(no, name, password, content, regDate);
 				guestList.add(guestVo);

@@ -6,6 +6,7 @@
 <%@ page import="com.javaex.dao.BoardDao" %>
 <%	
 	UserVo userVo = (UserVo)request.getAttribute("userVo");
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
 	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
 	//방명록 리스트
 	List<BoardVo> boardList = (List<BoardVo>)request.getAttribute("boardList");
@@ -91,7 +92,16 @@
 										<td>${boardVo.name }</td>
 										<td>${boardVo.hit }</td>
 										<td>${boardVo.regDate }</td>
-										<td><a href="/mysite2/board?action=delete&no=${boardVo.no }">[삭제]</a></td>
+										<td>
+											<c:choose>
+												<c:when test="${authUser.name == boardVo.name}">
+													<a href="/mysite2/board?action=delete&no=${boardVo.no }">[삭제]</a>
+												</c:when>
+												<c:otherwise>
+												</c:otherwise>
+											</c:choose>
+											
+										</td>
 									</tr>
 								</tbody>
 							</c:forEach>
@@ -116,8 +126,13 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="/mysite2/board?action=writeForm&userNo=${boardVo.userNo }">글쓰기</a>
-					
+						<c:choose>
+							<c:when test="${authUser.name == null}">
+							</c:when>
+							<c:otherwise>
+								<a id="btn_write" href="/mysite2/board?action=writeForm&userNo=${boardVo.userNo }">글쓰기</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!-- //list -->
 				</div>

@@ -63,7 +63,8 @@ public class BoardDao {
 			query += "         u.name, ";
 			query += "         b.title, ";
 			query += "         b.hit, ";
-			query += "         b.reg_date ";
+			query += "         reg_date, ";
+			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate ";
 			query += " from board b, users u ";
 			query += " where b.user_no=u.no ";
 			query += " order by reg_date desc ";
@@ -77,7 +78,7 @@ public class BoardDao {
 				String name = rs.getString("name");
 				String title = rs.getString("title");
 				int hit = rs.getInt("hit");
-				String regDate = rs.getString("reg_date");
+				String regDate = rs.getString("newDate");
 				
 				
 				BoardVo boardVo = new BoardVo(no, name, title, hit, regDate);
@@ -149,6 +150,7 @@ public class BoardDao {
 			query += "         name, ";
 			query += "         hit, ";
 			query += "         reg_date, ";
+			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate, ";
 			query += "         title, ";
 			query += "         content ";
 			query += " from board b, users u ";
@@ -164,7 +166,7 @@ public class BoardDao {
 				int no = rs.getInt("no");
 				String name = rs.getString("name");
 				int hit = rs.getInt("hit");
-				String regDate = rs.getString("reg_date");
+				String regDate = rs.getString("newDate");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				
@@ -189,6 +191,7 @@ public class BoardDao {
 			query += " select  name, ";
 			query += "         hit, ";
 			query += "         reg_date, ";
+			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate, ";
 			query += "         title, ";
 			query += "         content ";
 			query += " from board b, users u ";
@@ -204,7 +207,7 @@ public class BoardDao {
 			while(rs.next()) {
 				String name = rs.getString("name");
 				int hit = rs.getInt("hit");
-				String regDate = rs.getString("reg_date");
+				String regDate = rs.getString("newDate");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				

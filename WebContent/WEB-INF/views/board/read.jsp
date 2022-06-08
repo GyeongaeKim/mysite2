@@ -2,9 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="com.javaex.vo.BoardVo" %>
 <%@ page import="com.javaex.dao.BoardDao" %>
+<%@ page import="com.javaex.vo.UserVo"%>
 <%
 	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
 	int no = Integer.parseInt(request.getParameter("no"));
+	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	
 %>
 
 
@@ -95,8 +98,13 @@
 									${boardVo.content }
 								</span>
 							</div>
-							
-							<a id="btn_modify" href="/mysite2/board?action=modifyForm&no=${boardVo.no}">수정</a>
+							<c:choose>
+								<c:when test="${authUser.name == boardVo.name}">
+									<a id="btn_modify" href="/mysite2/board?action=modifyForm&no=${boardVo.no}">수정</a>
+								</c:when>
+							<c:otherwise>
+							</c:otherwise>
+							</c:choose>
 							<a id="btn_modify" href="/mysite2/board?action=list">목록</a>
 							
 						</form>
