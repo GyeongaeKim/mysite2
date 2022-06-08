@@ -1,13 +1,14 @@
 package com.javaex.vo;
 
 public class GuestbookVo {
-	
+	//필드
 	private int no;
 	private String name;
 	private String password;
 	private String content;
 	private String regDate;
-
+	
+	//생성자
 	public GuestbookVo() {
 	}
 
@@ -24,7 +25,9 @@ public class GuestbookVo {
 		this.password = password;
 		this.content = content;
 	}
-
+	
+	
+	//메소드 gs
 	public int getNo() {
 		return no;
 	}
@@ -64,7 +67,9 @@ public class GuestbookVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-
+	
+	
+	//메소드 일반
 	@Override
 	public String toString() {
 		return "GuestbookVo [no=" + no + ", name=" + name + ", password=" + password + ", content=" + content

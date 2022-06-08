@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%
-	//수정폼
+	//삭제폼
 	String no = request.getParameter("no");
 
 %>
