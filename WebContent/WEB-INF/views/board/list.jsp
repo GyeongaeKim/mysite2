@@ -68,13 +68,11 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="" method="">
+						<form action="/mysite2/board" method="get">
 							<div class="form-group text-right">
-								<form action="/mysite2/board" method="get">
-									<input type="text" name="action" value="search">
-									<input type="text" name="keyword" value="">
-									<button type="submit" id=btn_search>검색</button>
-								</form>
+								<input type="text" name="action" value="search">
+								<input type="text" name="keyword" value="">
+								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
 						<table >

@@ -93,8 +93,9 @@ public class BoardDao {
 	
 	
 	public List<BoardVo> searchList(String keyword){
-		List<BoardVo> searchList = new ArrayList<BoardVo>();
+		List<BoardVo> boardList = new ArrayList<BoardVo>();
 		getConnection();
+		keyword = "%" + keyword + "%";
 		try {
 			//SQL, 바인딩, 실행
 			String query = "";
@@ -109,7 +110,7 @@ public class BoardDao {
 			query += "   and b.title like ? ";
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, '%' + keyword + '%');
+			pstmt.setString(1, keyword);
 				
 			rs = pstmt.executeQuery();
 			
@@ -123,13 +124,13 @@ public class BoardDao {
 				
 				
 				BoardVo boardVo = new BoardVo(no, name, title, hit, regDate);
-				searchList.add(boardVo);
+				boardList.add(boardVo);
 			}
 		}catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
 		close();
-		return searchList;
+		return boardList;
 	}
 	
 	

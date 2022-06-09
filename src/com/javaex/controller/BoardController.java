@@ -51,9 +51,9 @@ public class BoardController extends HttpServlet {
 			
 			//데이터 가져오기
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> searchList = boardDao.searchList(keyword);
+			List<BoardVo> boardList = boardDao.searchList(keyword);
 			
-			request.setAttribute("searchList", searchList);
+			request.setAttribute("boardList", boardList);
 			
 			//포워드 게시판리스트
 			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
