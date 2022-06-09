@@ -53,7 +53,7 @@ public class BoardDao {
 	}
 	
 	
-	public List<BoardVo> getList(){
+	/*public List<BoardVo> getList(){
 		List<BoardVo> boardList = new ArrayList<BoardVo>();
 		getConnection();
 		try {
@@ -89,8 +89,11 @@ public class BoardDao {
 		}
 		close();
 		return boardList;
-	}
+	}*/
 	
+	public List<BoardVo> getList(){
+		return searchList("");
+	}
 	
 	public List<BoardVo> searchList(String keyword){
 		List<BoardVo> boardList = new ArrayList<BoardVo>();
@@ -107,11 +110,18 @@ public class BoardDao {
 			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate ";
 			query += " from board b, users u ";
 			query += " where b.user_no=u.no ";
-			query += "   and b.title like ? ";
 			
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, keyword);
+			if(keyword != "" || keyword == null) {
+				query += "   and b.title like ? ";
+				query += " order by reg_date desc ";
 				
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, keyword);
+			}else {
+				query += " order by reg_date desc ";
+				pstmt = conn.prepareStatement(query);
+			}
+			
 			rs = pstmt.executeQuery();
 			
 			//결과
