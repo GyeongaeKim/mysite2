@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.javaex.vo.BoardVo" %>
-<%@ page import="com.javaex.vo.UserVo" %>
 
-<%
-	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
-	UserVo userVo = (UserVo)request.getAttribute("userVo");
-%>
 <!DOCTYPE html>
 <html>
 <head>

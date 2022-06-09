@@ -1,18 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import = "java.util.List" %>
-<%@ page import="com.javaex.vo.BoardVo" %>
-<%@ page import="com.javaex.vo.UserVo"%>
-<%@ page import="com.javaex.dao.BoardDao" %>
-<%	
-	UserVo userVo = (UserVo)request.getAttribute("userVo");
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
-	//방명록 리스트
-	List<BoardVo> boardList = (List<BoardVo>)request.getAttribute("boardList");
-	List<BoardVo> searchList = (List<BoardVo>)request.getAttribute("searchList");
-%>
-
 
 <!DOCTYPE html>
 <html>
@@ -99,8 +86,6 @@
 												<c:when test="${authUser.name == boardVo.name}">
 													<a href="/mysite2/board?action=delete&no=${boardVo.no }">[삭제]</a>
 												</c:when>
-												<c:otherwise>
-												</c:otherwise>
 											</c:choose>
 											
 										</td>

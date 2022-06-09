@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.javaex.vo.BoardVo" %>
-<%@ page import="com.javaex.dao.BoardDao" %>
-<%
-	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
-	int no = Integer.parseInt(request.getParameter("no"));
-%>
 
 <!DOCTYPE html>
 <html>

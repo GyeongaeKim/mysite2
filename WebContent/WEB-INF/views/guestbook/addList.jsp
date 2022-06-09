@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javaex.vo.GuestbookVo" %>
-<%@ page import="com.javaex.dao.GuestbookDao" %>
-<%@ page import = "java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%	
-	//방명록 리스트
-	List<GuestbookVo> guestList = (List<GuestbookVo>)request.getAttribute("guestList");
-%>
 
 <!DOCTYPE html>
 <html>
