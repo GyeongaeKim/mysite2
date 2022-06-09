@@ -45,6 +45,18 @@ public class BoardController extends HttpServlet {
 			
 			//포워드 게시판리스트
 			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
+		}else if("search".equals(action)) {
+			//파라미터
+			String keyword = request.getParameter("keyword");
+			
+			//데이터 가져오기
+			BoardDao boardDao = new BoardDao();
+			List<BoardVo> searchList = boardDao.searchList(keyword);
+			
+			request.setAttribute("searchList", searchList);
+			
+			//포워드 게시판리스트
+			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
 		}else if("delete".equals(action)) {
 			//세션에서 no  알아내기
 			HttpSession session = request.getSession();

@@ -92,6 +92,47 @@ public class BoardDao {
 	}
 	
 	
+	public List<BoardVo> searchList(String keyword){
+		List<BoardVo> searchList = new ArrayList<BoardVo>();
+		getConnection();
+		try {
+			//SQL, 바인딩, 실행
+			String query = "";
+			query += " select  b.no, ";
+			query += "         u.name, ";
+			query += "         b.title, ";
+			query += "         b.hit, ";
+			query += "         reg_date, ";
+			query += "         to_char(reg_date, 'YY-MM-DD HH:MI') newDate ";
+			query += " from board b, users u ";
+			query += " where b.user_no=u.no ";
+			query += "   and b.title like ? ";
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, '%' + keyword + '%');
+				
+			rs = pstmt.executeQuery();
+			
+			//결과
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String name = rs.getString("name");
+				String title = rs.getString("title");
+				int hit = rs.getInt("hit");
+				String regDate = rs.getString("newDate");
+				
+				
+				BoardVo boardVo = new BoardVo(no, name, title, hit, regDate);
+				searchList.add(boardVo);
+			}
+		}catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		close();
+		return searchList;
+	}
+	
+	
 	public int delete(BoardVo boardVo) {
 		int count = -1;
 		getConnection();

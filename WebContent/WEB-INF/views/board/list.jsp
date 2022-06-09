@@ -10,6 +10,7 @@
 	BoardVo boardVo = (BoardVo)request.getAttribute("boardVo");
 	//방명록 리스트
 	List<BoardVo> boardList = (List<BoardVo>)request.getAttribute("boardList");
+	List<BoardVo> searchList = (List<BoardVo>)request.getAttribute("searchList");
 %>
 
 
@@ -69,8 +70,11 @@
 					<div id="list">
 						<form action="" method="">
 							<div class="form-group text-right">
-								<input type="text">
-								<button type="submit" id=btn_search>검색</button>
+								<form action="/mysite2/board" method="get">
+									<input type="text" name="action" value="search">
+									<input type="text" name="keyword" value="">
+									<button type="submit" id=btn_search>검색</button>
+								</form>
 							</div>
 						</form>
 						<table >
