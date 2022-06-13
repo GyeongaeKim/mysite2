@@ -167,7 +167,7 @@ public class BoardDao {
 		return count;
 	}
 	
-	public int updateHit(BoardVo boardVo) {
+	public int updateHit(int no) {
 		int count = -1;
 		getConnection();
 		try {
@@ -178,7 +178,7 @@ public class BoardDao {
 			query += " where no = ? ";
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, boardVo.getNo());
+			pstmt.setInt(1, no);
 			
 			count = pstmt.executeUpdate();
 			

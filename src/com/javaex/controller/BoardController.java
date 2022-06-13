@@ -76,24 +76,17 @@ public class BoardController extends HttpServlet {
 			//리다이렉트 
 			WebUtil.redirect(request, response, "/mysite2/board?action=list");
 			
-		}else if("click".equals(action)) {
-			//파라미터에서 값 꺼내오기
-			int no = Integer.parseInt(request.getParameter("no"));
-			
-			BoardVo boardVo = new BoardVo();
-			boardVo.setNo(no);
-			
-			BoardDao boardDao = new BoardDao();
-			int count = boardDao.updateHit(boardVo);
-			
-			WebUtil.redirect(request, response, "/mysite2/board?action=read&no="+no);
-			
 		}else if("read".equals(action)) { //name hit regDate title content
 			//파라미터에서 값 꺼내오기
 			int no = Integer.parseInt(request.getParameter("no"));
 			
 			//no로 게시글 정보 가져오기
 			BoardDao boardDao = new BoardDao();
+			
+			//조회수증가
+			boardDao.updateHit(no);
+			
+			
 			BoardVo boardVo = boardDao.readBoard(no);
 			
 			request.setAttribute("boardVo", boardVo);

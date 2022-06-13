@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javaex.vo.UserVo"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%	
-	//헤더 로그인
-	UserVo authUser = (UserVo)session.getAttribute("authUser");
-	System.out.println(authUser);
-%>
 
 <!DOCTYPE html>
 <html>
